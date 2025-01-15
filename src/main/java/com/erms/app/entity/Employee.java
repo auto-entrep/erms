@@ -2,10 +2,10 @@ package com.erms.app.entity;
 import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-//import jakarta.persistence.GeneratedValue;
+import lombok.*;
 
 
-
+@NoArgsConstructor  @AllArgsConstructor @Builder @Getter @Setter @ToString
 @Entity
 public class Employee {
 
