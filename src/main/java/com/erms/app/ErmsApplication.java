@@ -17,12 +17,6 @@ public class ErmsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ErmsApplication.class, args);
 	}
-	
-	/* private String employeeId;     private String fullName;    private String jobTitle;   private String department;
-    private Date hireDate; 	    private String employmentStatus;     private String contactInfo;
-    private String address;     private String role;*/
-	
-
     
 	@Bean
 	CommandLineRunner commandLineRunner(EmployeeService employeeService) {

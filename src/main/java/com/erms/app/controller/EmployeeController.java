@@ -2,6 +2,7 @@ package com.erms.app.controller;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,7 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/{id}")
-	public Employee getEmployeeById(@PathVariable("id") String employeeId) {
+	public Employee getEmployeeById(@PathVariable("id") Long employeeId) {
 		return employeeService.getEmployeeById(employeeId);
 	}
 	
@@ -42,6 +43,17 @@ public class EmployeeController {
 		return employeeService.updateEmployee(employee);
 	}
 
+	@PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
+        Employee employee = employeeService.getEmployeeById(id);
+        if (employee != null) {
+            BeanUtils.copyProperties(employeeDetails, employee);
+            return employeeService.createEmployee(employee);
+        }
+        return null;
+    }
+
+	
 	@DeleteMapping("/{id}")
 	public void deleteEmployee(@PathVariable("id") String employeeId) {
 		employeeService.deleteEmployee(employeeId);

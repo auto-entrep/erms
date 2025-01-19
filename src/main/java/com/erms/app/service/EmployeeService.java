@@ -17,8 +17,8 @@ public class EmployeeService {
 		return employeeRepository.findAll();
 	}
 	
-	public Employee getEmployeeById(String employeeId) {
-		return employeeRepository.findById(employeeId).orElse(null);
+	public Employee getEmployeeById(Long employeeId) {
+		return employeeRepository.findById(employeeId);
 	}
 
 	public Employee createEmployee(Employee employee) {
