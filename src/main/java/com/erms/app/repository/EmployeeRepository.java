@@ -1,5 +1,6 @@
 package com.erms.app.repository;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,11 +9,12 @@ import org.springframework.stereotype.Repository;
 
 import com.erms.app.entity.Employee;
 
-@Repository
-public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
-    public Employee updateEmployee(Long id, Employee e);
-    public Employee findById(Long id);
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
+//    public Employee updateEmployee(Long id, Employee e);
+    //public Optional<Employee> findById(Long id);
+    
     
     
 	// Role findByRoleName(String roleName);

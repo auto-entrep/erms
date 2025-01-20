@@ -1,6 +1,7 @@
 package com.erms.app.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,33 +30,35 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/{id}")
-	public Employee getEmployeeById(@PathVariable("id") Long employeeId) {
+	public Optional<Employee> getEmployeeById(@PathVariable("id") Long employeeId) {
 		return employeeService.getEmployeeById(employeeId);
 	}
 	
-	@PostMapping
+/*	@PostMapping
 	public Employee createEmployee(@RequestBody Employee employee) {
 		return employeeService.createEmployee(employee);
-	}
+	}*/
 	
-	@PutMapping("/{id}")
+/*	@PutMapping("/{id}")
 	public Employee updateEmployee(@PathVariable("id") String employeeId, @RequestBody Employee employee){
 		return employeeService.updateEmployee(employee);
-	}
+	}*/
 
-	@PutMapping("/{id}")
+	/*@PutMapping("/{id}")
     public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails) {
-        Employee employee = employeeService.getEmployeeById(id);
+        Optional<Employee> employee = employeeService.getEmployeeById(id);
         if (employee != null) {
             BeanUtils.copyProperties(employeeDetails, employee);
-            return employeeService.createEmployee(employee);
+ //           return employeeService.createEmployee(employee);
         }
         return null;
-    }
+    }*/
 
 	
 	@DeleteMapping("/{id}")
-	public void deleteEmployee(@PathVariable("id") String employeeId) {
+	public void deleteEmployee(@PathVariable("id") Long employeeId) {
 		employeeService.deleteEmployee(employeeId);
 	}
+	
+	
 }

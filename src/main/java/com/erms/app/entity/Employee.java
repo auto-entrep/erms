@@ -9,8 +9,8 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 
-@NoArgsConstructor  @AllArgsConstructor @Getter @Setter @ToString @Builder
-@Table
+@NoArgsConstructor  @AllArgsConstructor @Builder @Data
+@Table(name = "Employee")
 @Entity
 public class Employee {
 
