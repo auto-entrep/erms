@@ -39,19 +39,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthentifController  {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-//	@Autowired private UserService userService;	
-	@Autowired
-//	private userDetailsServiceImpl customUserDetailsService;
 	private UserDetailsServiceImpl userDetailsServiceImpl;
-    private final AuthenticationManager authenticationManager;
-    //private final UserDetailsService userDetailsService ;
+  //  private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public AuthentifController(AuthenticationManager authenticationManager, /*UserDetailsService userDetailsService,*/ UserDetailsServiceImpl userDetailsServiceImpl,BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.authenticationManager = authenticationManager;
+    public AuthentifController(UserDetailsServiceImpl userDetailsServiceImpl,BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsServiceImpl= userDetailsServiceImpl;
-     //   this.userDetailsService = userDetailsService;
-  //      this.userService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
     
@@ -59,10 +52,9 @@ public class AuthentifController  {
 
     @PostMapping("/login")
     public String login(@RequestBody User authRequest) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+   /*     Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())        );*/
+ //       SecurityContextHolder.getContext().setAuthentication(authentication);
 
     //    UserDetails userDetails = userDetailsService.loadUserByUsername(authRequest.getLogin());
  

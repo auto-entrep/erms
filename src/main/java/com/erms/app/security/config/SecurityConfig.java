@@ -9,6 +9,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.erms.app.security.service.UserDetailsServiceImpl;
 
+import javax.sql.DataSource;
+
 import lombok.AllArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired; 
@@ -17,6 +19,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 
 @Configuration
@@ -28,6 +31,11 @@ public class SecurityConfig  {
 	
 	private UserDetailsServiceImpl userDetailsServiceImpl; 
     private PasswordEncoder passwordEncoder;
+    
+    @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager(DataSource datasource) {
+    	return new JdbcUserDetailsManager(datasource);
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {

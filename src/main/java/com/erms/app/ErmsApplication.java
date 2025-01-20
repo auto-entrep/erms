@@ -24,17 +24,17 @@ import com.erms.app.service.EmployeeService;
 @ComponentScan(basePackages = "com.erms.app")
 public class ErmsApplication {
 	
-
-    @Autowired
-	private	UserDetailsServiceImpl userDetailsServiceImpl;
+//	@Autowired(required=true) 
+	//private JdbcUserDetailsManager jdbcUserDetailsManager;
 	
-    
+	
     public static void main(String[] args) {
 		SpringApplication.run(ErmsApplication.class, args);
 	}
     
-/*	@Bean
-	CommandLineRunner commandLineRunner(EmployeeService employeeService) {
+/*
+    @Bean
+	CommandLineRunner commandLineRunner1(EmployeeService employeeService) {
 		return args->{
 
 			Employee employee1= Employee.builder()
@@ -60,15 +60,12 @@ public class ErmsApplication {
 	                   .role("role2")
 	                   .build();
 			employeeService.createEmployee(employee2);	                   
-	                   
-
-					
-					
 		};
-	}*/
-	
+	}
+	*/
+
 	@Bean
-	CommandLineRunner commandLineRunner(AccountService accountService) {
+	CommandLineRunner commandLineRunner2(AccountService accountService) {
 		return args->{
 
 			accountService.addNewRole("USER");
@@ -87,32 +84,32 @@ public class ErmsApplication {
 		};
 	}
 	
-/*	@Bean
-	CommandLineRunner commandLineRunner(JdbcUserDetailsManager jdbcusUserDetailsManager) {
+	@Bean
+	CommandLineRunner commandLineRunner3(JdbcUserDetailsManager jdbcUserDetailsManager) {
              PasswordEncoder passwordEncoder=passwordEncoder();
 		return args->{
-			UserDetails u1 = jdbcusUserDetailsManager.loadUserByUsername("user11");
+			UserDetails u1 = jdbcUserDetailsManager.loadUserByUsername("user11");
               if(u1==null)
-            	  jdbcusUserDetailsManager.createUser(
+            	  jdbcUserDetailsManager.createUser(
               User.withUsername("user11").password(passwordEncoder.encode("1234")).roles("USER").build()
             		 );
               
-              UserDetails u2 = jdbcusUserDetailsManager.loadUserByUsername("user22");
+              UserDetails u2 = jdbcUserDetailsManager.loadUserByUsername("user22");
               if(u2==null)
-            	  jdbcusUserDetailsManager.createUser(
+            	  jdbcUserDetailsManager.createUser(
               User.withUsername("user22").password(passwordEncoder.encode("1234")).roles("USER").build()
             		 );
               
               
-              UserDetails u3 = jdbcusUserDetailsManager.loadUserByUsername("admin2");
+              UserDetails u3 = jdbcUserDetailsManager.loadUserByUsername("admin2");
               if(u3==null)
-            	  jdbcusUserDetailsManager.createUser(
+            	  jdbcUserDetailsManager.createUser(
               User.withUsername("admin2").password(passwordEncoder.encode("1234")).roles("USER").build()
             		 );
               		};
-	}*/
+	}
 	
-	
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
